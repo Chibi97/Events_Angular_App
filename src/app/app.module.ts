@@ -5,14 +5,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { EventsAppComponent } from './events-app.component';
 
 @NgModule({
-  declarations: [
-        EventsAppComponent
-  ],
   imports: [
     BrowserModule,
     AppRoutingModule
+    // importing other modules
+    // (which includes all of its exported declarations
+    // and providers available to this module)
   ],
-  providers: [],
-    bootstrap: [EventsAppComponent]
+  declarations: [
+        EventsAppComponent
+        // component pipe or directive must be declared here
+  ],
+  providers: [
+    // services are declared here
+  ],
+  bootstrap: [EventsAppComponent]
 })
 export class AppModule { }

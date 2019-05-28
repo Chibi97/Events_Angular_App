@@ -1,0 +1,26 @@
+
+- Angular modules are meant to be containers that group
+all routes/components trees that can be loaded 
+independently of each other. That way browser will only
+load parts that are needed for that part of the site 
+(not all).
+
+- Every component, service, directive, pipe must be 
+registered in a Module, to be available there.
+They (except serivces) are ONLY available in THAT module.
+
+- Small apps usually have one module, but as it grow 
+bigger, it requires more modules.
+
+- Bootstraping of our app begins with "main.ts" file
+(loaded by Webpack via "angular.json" file),
+which loads an AppModule (the root of the tree) 
+-> which then includes AppComponent as the one providing logic.
+AppModule is only aware of AppComponent, but it's index.html
+that actually displays it.
+
+- next: look at app.module.ts
+- We should place all static files in "assets" folder and that's
+because in "angular.json" there is "assets[]" and src/assets is 
+included in the array -- for images and files
+but for CSS styles, there is "styles["src/style.css"]" array.
