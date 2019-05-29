@@ -31,3 +31,35 @@ but for CSS styles, there is "styles["src/style.css"]" array.
 only for that specific component. That way, having same html classes won't affect others' component
 css classes. But, if we want a style to be affective through the whole app, we can write it
 inside /styles.css in the root of the project.
+
+- PROP BINDING and String Interpolation are used to bind data from component into a template.
+In the background they implement Observer pattern so if data in component changes, the template
+should know and be passed new version of data.
+
+* Interpolation {{ object.prop }} is used just to display data
+* PB is used to bind data to the property of a DOM element.
+  [property]="expression"
+  DON'Ts:
+  ~ Expression cannot include assignments (=, +=, ++..),
+  ~ cannot use "new" keyword,
+  ~ you can't chain expressions with ;
+  ~ you can't access anything on the global namespace (window, console)
+
+  RECOMMENDATIONS:
+  ~ Calling an expression should NOT CHANGE any data.
+  ~ Expressions should be fast and simple
+  ~ Each time we call exp, it should return same result -> Idempotent
+
+-EVENT BINDING
+<button (click)="doSmth()"></button> 
+Here, we are binding doSmth() to JS's click event.
+Statements - DON'Ts:
+~ Assignments EXCEPT with =, we can do it like that
+~ No global namespace
+~ No "new" for making objects
+
+DOs:
+~ We can chain statements with ;
+~ Can have side effects and they often do (make changes to the state of an app)
+~ Don't have to be Idempotent and fast
+~ Should be simple
