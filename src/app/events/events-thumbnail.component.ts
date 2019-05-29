@@ -3,7 +3,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 @Component({
     selector: 'app-event-thumbnail',
     template: `
-        <div class="row border rounded p-3">
+        <div class="row border rounded p-3 mb-5">
             <div class="event-card col-12 col-md-7">
                 <h2 class="pb-3"> {{ event.name }} </h2>
                 <h5 class="card-title">Price: \${{ event.price }}</h5>
@@ -14,7 +14,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
                 <button class="btn btn-primary" (click)="handleClick()" >More information</button>
             </div>
             <div class="col-12 col-md-5">
-                <img src='{{ event.imageUrl }}' width='300' height='auto'/>
+                <img src='{{ event.imageUrl }}' width='200' height='auto'/>
             </div>
         </div>
     `,
