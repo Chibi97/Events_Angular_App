@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { EventsAppComponent } from './events-app.component';
 import { EventsListComponent } from './events/events-list.component';
 import { EventsThumbnailComponent } from './events/events-thumbnail.component';
+import { NavbarComponent } from './nav/navbar.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { EventsThumbnailComponent } from './events/events-thumbnail.component';
   declarations: [
         EventsAppComponent,
         EventsListComponent,
-        EventsThumbnailComponent
+        EventsThumbnailComponent,
+        NavbarComponent
         // component pipe or directive must be declared here
   ],
   providers: [

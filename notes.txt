@@ -24,3 +24,10 @@ that actually displays it.
 because in "angular.json" there is "assets[]" and src/assets is 
 included in the array -- for images and files
 but for CSS styles, there is "styles["src/style.css"]" array.
+
+- next: events-list.component.ts
+
+- Angular helps with CSS. Every component that declares their CSS / path to CSS file is active
+only for that specific component. That way, having same html classes won't affect others' component
+css classes. But, if we want a style to be affective through the whole app, we can write it
+inside /styles.css in the root of the project.

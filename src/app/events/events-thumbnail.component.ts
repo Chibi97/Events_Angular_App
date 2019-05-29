@@ -4,20 +4,21 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
     selector: 'app-event-thumbnail',
     template: `
         <div class="row border rounded p-3">
-            <div class="col-12 col-md-7">
+            <div class="event-card col-12 col-md-7">
                 <h2 class="pb-3"> {{ event.name }} </h2>
                 <h5 class="card-title">Price: \${{ event.price }}</h5>
                 <p class="card-text">Date: {{ event.date }}</p>
                 <p class="card-text">Time: {{ event.time }}</p>
-                <p class="card-text">Location: {{ event.location.address }} {{ event.location.city }}, {{ event.location.country}}
-                </p>
+                <p class="card-text">Location: {{ event.location.address }}<span class="pad-left">{{ event.location.city }}, 
+                  {{ event.location.country}}</span></p>
                 <button class="btn btn-primary" (click)="handleClick()" >More information</button>
             </div>
             <div class="col-12 col-md-5">
                 <img src='{{ event.imageUrl }}' width='300' height='auto'/>
             </div>
         </div>
-    `
+    `,
+    styleUrls: ['./events-thumbnail.component.css']
 })
 
 export class EventsThumbnailComponent {
