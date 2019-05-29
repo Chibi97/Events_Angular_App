@@ -5,6 +5,7 @@ import {Component} from '@angular/core';
     // templateUrl: './events-list.component.html'
     template: `
         <div>
+            <div class="spacer py-5"></div>
             <h1>Upcoming Angular Events</h1>
             <hr>
             <app-event-thumbnail #thumbnail [event]="eventObj"></app-event-thumbnail>
