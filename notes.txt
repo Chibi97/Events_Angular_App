@@ -56,8 +56,59 @@ DOs:
 ~ Don't have to be Idempotent and fast
 ~ Should be simple
 
-10) If we somehow forget to include property binding [event]='event', code would break.
+10) If we somehow forget to include property binding 
+[event]='event', code would break.
 Angular has a nice way of optional safety. In events-thumbnail, everytime we call "event?.someProp"
 we are assuring that someProp is displayed ONLY if there is an event. Also, we don't need to handle
 nested objects like this: "event?.location?.address" bcz event? handles it too. But, if not all
 objects have location, we'd need location? too.
+
+11) Services allow you to define business logic in a separate file and then inject that serivces in
+other classes whenever we need it. One service should be capable of doing one thing.
+If we think of a DB, one table in DB --> one Model would be one service 
+(Events Service -> get, getOne, insert, update, delete). 
+Our EventListComponent shouldn't take care of providing data!!!
+
+class EventListComponent {
+  events: any;
+  let eventService = new EventService();
+  events = eventsService.getEvents();
+}
+
+This is one step better than to have array of events in EventsListComponent, but...
+What if elsewhere in our app we decided to -- in some cases, we should get data from Async call,
+and in another cases we want to get them from local browser storage? With this code, we'd have no way
+to use different type of EventService. Basically, we'd change ONE LINE of code, saying which other 
+Dependency we want to use, and nothing else should be rewritten, all would work fine.
+So that's DEPENDENCY INJECTION. To Inject instances on classes that the class use and depends on.
+Also, with the new = EventService() our services has another reason to change, but should have only ONE.
+
+class EventListComponent {
+  events: any;
+  constructor (private eService: EventService) {
+    events = eService.getEvents()
+  }
+}
+
+On the backend, we'd use Dependency Injection on type of database we want to use. For example, if we have
+SQL-DB, but we want NO-SQL DB bcz of the performance issues, our front app would say which Dependency it wants
+(for example NO-SQL, but specific: ElasticSearch) and then it'd use code made for purpose of Elastic queries.
+None of the code should be rewritten.
+
+12) Another way to use Services is that they hold state that is accessible throughout your app.
+Example: Authentication -> to log with user is in current session
+
+13) ROUTING -- see next: router.ts, event-details, app.module.ts
+
+14) We need to tell Angular where on our web server our app is hosted
+By default, our app is hosted at the root "/" -> website.com/
+But if our app is for example hosted in website.com/public then we'd need to tell 
+Angular so that it knows WHATS ITS ROUTES ARE RELATIVE TO, so it can parse URL.
+
+We do that by editing index.html: <base href="/">
+
+15) When working with routing system:
+  1) Add <router-outlet></router-outlet> to AppComponent (EventAppComponent in our case)
+  2) Define routes for each page in /src/app/routes.ts
+  3) Load routes in AppModule -> RouterModule.forRoot(appRoutes // which is representation of our routes.ts)
+  4) See if <base> is there in index.html
