@@ -2,14 +2,14 @@
   <div class="spacer py-5"></div>
   <h1>Upcoming Angular Events</h1>
   <hr>
-  <app-event-thumbnail *ngFor='let event of events' [event]='event' ></app-event-thumbnail>
+  <app-event-thumbnail *ngFor='let event of events' [event]='event'></app-event-thumbnail>
 </div>
 
 <!-- 
 ~~~ PROPERTY BINDING
   * So basically, with [] we are telling Angular that we'll pass paramter form this component
   * to Event-Thumbnails component (which will be named there as "event").
-  * Name must match with object name in the child component that expects param (Thumbnail)
+  * [name] must match with object name in the child component that expects param (Thumbnail)
 
 ~~~ EVENT BINDING
   <app-event-thumbnail (eventClick)="handleEventClick($event)"></app-event-thumbnail>

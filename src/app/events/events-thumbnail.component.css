@@ -6,3 +6,11 @@
 .event-card p {
   color: #bbb;
 }
+
+.limegreen {
+  color: limegreen;
+}
+
+.bold {
+  font-weight: bold;
+}

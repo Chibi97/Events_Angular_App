@@ -1,23 +1,9 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { TouchSequence } from 'selenium-webdriver';
 
 @Component({
     selector: 'app-event-thumbnail',
-    template: `
-        <div class="row border rounded p-3 mb-5">
-            <div class="event-card col-12 col-md-7">
-                <h2 class="pb-3"> {{ event.name }} </h2>
-                <h5 class="card-title">Price: \${{ event.price }}</h5>
-                <p class="card-text">Date: {{ event.date }}</p>
-                <p class="card-text">Time: {{ event.time }}</p>
-                <p class="card-text">Location: {{ event.location.address }}<span class="pad-left">{{ event.location.city }}, 
-                  {{ event.location.country}}</span></p>
-                <button class="btn btn-primary" (click)="handleClick()" >More information</button>
-            </div>
-            <div class="col-12 col-md-5">
-                <img src='{{ event.imageUrl }}' width='200' height='auto'/>
-            </div>
-        </div>
-    `,
+    templateUrl: './events-thumbnail.component.html',
     styleUrls: ['./events-thumbnail.component.css']
 })
 
@@ -29,6 +15,7 @@ export class EventsThumbnailComponent {
     someProperty: any = 'Text from the child component (Thumbnail)';
 
     handleClick() {
+        // (click)="handleClick()" on button
         this.eventClick.emit(this.event.name);
         console.log('passing data: ' + this.event.name + ' to who wants to listen');
     }
@@ -38,5 +25,18 @@ export class EventsThumbnailComponent {
 
     logFoo() {
         console.log('foo');
+    }
+
+    applyEarlyTimeClasses() {
+        const isEarly = this.event && this.event.time === '8:00 am';
+        return {limegreen: isEarly, bold: isEarly};
+        // we could also return string or array with classes we want applied, if some condition is met
+    }
+
+    applyEarlyTimeStyle(): any {
+        if (this.event && this.event.time === '8:00 am') {
+            return { color: 'limegreen', 'font-weight': 'bold' };
+        }
+        return {};
     }
 }

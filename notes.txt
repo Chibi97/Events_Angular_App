@@ -1,38 +1,30 @@
 
-- Angular modules are meant to be containers that group
-all routes/components trees that can be loaded 
-independently of each other. That way browser will only
-load parts that are needed for that part of the site 
-(not all).
+1) Angular modules are meant to be containers that group all routes/components trees
+that can be loaded independently of each other. That way browser will only load parts
+that are needed for that part of the site (not all).
 
-- Every component, service, directive, pipe must be 
-registered in a Module, to be available there.
-They (except serivces) are ONLY available in THAT module.
+2) Every component, service, directive, pipe must be registered in a Module, 
+to be available there. They (except serivces) are ONLY available in THAT module.
+Small apps usually have one module, but as it grow bigger, it requires more modules.
 
-- Small apps usually have one module, but as it grow 
-bigger, it requires more modules.
+3) Bootstraping of our app begins with "main.ts" file(loaded by Webpack via "angular.json" file),
+which loads an AppModule (the root of the tree) -> which then includes AppComponent as the one
+providing logic. AppModule is only aware of AppComponent, but it's index.html that actually displays it.
 
-- Bootstraping of our app begins with "main.ts" file
-(loaded by Webpack via "angular.json" file),
-which loads an AppModule (the root of the tree) 
--> which then includes AppComponent as the one providing logic.
-AppModule is only aware of AppComponent, but it's index.html
-that actually displays it.
+4) next: look at app.module.ts
+5) We should place all static files in "assets" folder and that's because in "angular.json" there is
+  -> assets['src/assets'] -- for images and files like that
+but for CSS styles, there is -> styles['src/style.css'] array.
 
-- next: look at app.module.ts
-- We should place all static files in "assets" folder and that's
-because in "angular.json" there is "assets[]" and src/assets is 
-included in the array -- for images and files
-but for CSS styles, there is "styles["src/style.css"]" array.
+6) next: events-list.component.html, same but TS
+7) next: events-thumbnail.component.ts
 
-- next: events-list.component.ts
-
-- Angular helps with CSS. Every component that declares their CSS / path to CSS file is active
+8) Angular helps with CSS. Every component that declares their CSS / path to CSS file is active
 only for that specific component. That way, having same html classes won't affect others' component
 css classes. But, if we want a style to be affective through the whole app, we can write it
 inside /styles.css in the root of the project.
 
-- PROP BINDING and String Interpolation are used to bind data from component into a template.
+9) PROP BINDING and String Interpolation are used to bind data from component into a template.
 In the background they implement Observer pattern so if data in component changes, the template
 should know and be passed new version of data.
 
@@ -63,3 +55,9 @@ DOs:
 ~ Can have side effects and they often do (make changes to the state of an app)
 ~ Don't have to be Idempotent and fast
 ~ Should be simple
+
+10) If we somehow forget to include property binding [event]='event', code would break.
+Angular has a nice way of optional safety. In events-thumbnail, everytime we call "event?.someProp"
+we are assuring that someProp is displayed ONLY if there is an event. Also, we don't need to handle
+nested objects like this: "event?.location?.address" bcz event? handles it too. But, if not all
+objects have location, we'd need location? too.

@@ -14,16 +14,15 @@ import { NavbarComponent } from './nav/navbar.component';
     BrowserModule,
     AppRoutingModule,
     NgbModule
-    // importing other modules
-    // (which includes all of its exported declarations
-    // and providers available to this module)
+    /* importing other modules (which makes all of its exported declarations
+       and providers available to this module) */
   ],
   declarations: [
         EventsAppComponent,
         EventsListComponent,
         EventsThumbnailComponent,
         NavbarComponent
-        // component pipe or directive must be declared here
+        // component, pipe or directive must be declared here
   ],
   providers: [
     // services are declared here
