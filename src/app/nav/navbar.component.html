@@ -10,6 +10,11 @@
         <a [routerLink]="['/events']" class="nav-link" >All Events</a>
         <!-- [routerLink]="['/events']" its this prop binding that sets "href" in the background!! -->
       </li>
+
+      <li>
+        <a [routerLink]="['/events/new']" class="nav-link">Create Event</a>
+      </li>
+      
       <li class="nav-item dropdown" ngbDropdown>
         <a class="nav-link dropdown-toggle" id="id01" ngbDropdownToggle>Languages</a>
         <div class="dropdown-menu" aria-labelledby="id01" ngbDropdownMenu>
@@ -17,10 +22,6 @@
           <a class="dropdown-item" href="#">TS</a>
           <a class="dropdown-item" href="#">JS</a>
         </div>
-      </li>
-
-      <li>
-        <a class="nav-link">Create Event</a>
       </li>
     </ul>
   </div>

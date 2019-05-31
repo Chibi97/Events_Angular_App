@@ -20,7 +20,8 @@ export class EventsListComponent implements OnInit {
   }
 
   handleClick(eventName) {
-    this.notification.success(eventName);
+    console.log('success - toastr')
+    //this.notification.success(eventName);
   }
 
   // handleEventClick(data) {

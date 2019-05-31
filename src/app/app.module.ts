@@ -1,11 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 // import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-/* imports */
 import { EventsAppComponent } from './events-app.component';
 import { EventsListComponent } from './events/events-list.component';
 import { EventsThumbnailComponent } from './events/events-thumbnail.component';
@@ -17,6 +15,8 @@ import { NotificationService } from './services/notification.service';
 import { EventDetailsComponent } from './events/event-details/event-details.component';
 import { appRoutes } from './routes';
 import { CreateEventComponent } from './events/create-event.component';
+import { Error404Component } from './errors/404.component';
+import { EventRouteActivator } from './events/event-details/event-route-activator.service';
 
 @NgModule({
   imports: [
@@ -35,12 +35,14 @@ import { CreateEventComponent } from './events/create-event.component';
         EventsThumbnailComponent,
         NavbarComponent,
         EventDetailsComponent,
-        CreateEventComponent
+        CreateEventComponent,
+        Error404Component
         // component, pipe or directive must be declared here
   ],
   providers: [
     EventService,
-    NotificationService
+    NotificationService,
+    EventRouteActivator
     // services are declared here
   ],
   bootstrap: [EventsAppComponent]
