@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+/* imports */
 import { EventsAppComponent } from './events-app.component';
 import { EventsListComponent } from './events/events-list.component';
 import { EventsThumbnailComponent } from './events/events-thumbnail.component';
@@ -15,6 +16,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NotificationService } from './services/notification.service';
 import { EventDetailsComponent } from './events/event-details/event-details.component';
 import { appRoutes } from './routes';
+import { CreateEventComponent } from './events/create-event.component';
 
 @NgModule({
   imports: [
@@ -32,7 +34,8 @@ import { appRoutes } from './routes';
         EventsListComponent,
         EventsThumbnailComponent,
         NavbarComponent,
-        EventDetailsComponent
+        EventDetailsComponent,
+        CreateEventComponent
         // component, pipe or directive must be declared here
   ],
   providers: [

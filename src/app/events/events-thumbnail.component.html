@@ -24,7 +24,9 @@
     <p class="card-text" [hidden]="!event?.onlineUrl">
         Website: <a href="{{ event?.onlineUrl }}"> Click</a>
     </p>
-    <button class="btn btn-primary" (click)="handleClick()">More information</button>
+    <button class="btn btn-primary" [routerLink]="['/events', event.id ]">More
+      information</button>
+      <!-- (click)="handleClick()" removed! -->
   </div>
   <div class="col-12 col-md-5">
     <img src='{{ event?.imageUrl }}' width='200' height='auto' />
