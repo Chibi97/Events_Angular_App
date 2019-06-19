@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-    template: `<h1 class="errorMessage spacer py-5">Not found</h1>`,
+    template: `<h2 class="errorMessage spacer py-5">Not found</h2>`,
     styles: [`
         .errorMessage {
             margin-top: 150px;

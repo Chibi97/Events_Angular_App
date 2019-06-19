@@ -1,6 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 /* You can add global styles to this file, and also import other style files */ 
 @import '~ngx-toastr/toastr.css';
+body {
+  background: #1A1B25;
+  color: #F0F2A6;
+}
+
+nav {
+  background: #392061 !important;
+}
+
+h1, h2, h3 { 
+  color: #AA6373;
+}
 
 .hoverwell:hover {
   background-color: #485563;

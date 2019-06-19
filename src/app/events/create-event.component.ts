@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
         <h1>New Event</h1>
         <hr>
         <div class="col-md-6">
-            <h3>[Create Event Form placeholder]</h3>
+            <h3>Create Event Form placeholder</h3>
             <br/>
             <br/>
             <button type="submit" class="btn btn-primary">Save</button>
@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 })
 
 export class CreateEventComponent {
-
+    isDirty = true;
     constructor(private router: Router) {}
 
     cancel() {

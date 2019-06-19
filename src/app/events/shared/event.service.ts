@@ -1,13 +1,27 @@
 import { Injectable } from '@angular/core';
 // Injectable is here bcz we'll need some other service used in our service (HTTP for example) later
+import { Subject, Observable } from 'rxjs';
+
 @Injectable()
 export class EventService {
-  getEvets(): any[] {
-    return EVENTS;
+  getEvets(): Observable<any> {
+    const subject = new Subject(); // Observable type
+    // simulate async call
+    setTimeout(() => {
+      // tslint:disable-next-line: no-use-before-declare
+      subject.next(EVENTS);
+      subject.complete();
+    }, 1000);
+    return subject;
+    /*
+      Obervables are streams of data (like arrays) but data arrives over time.
+      After 1 secs data is added to the stream
+    */
   }
 
   getEvent(id: number) {
-    return EVENTS.find( event => event.id === id )
+    // tslint:disable-next-line: no-use-before-declare
+    return EVENTS.find( event => event.id === id );
   }
 }
 

@@ -17,7 +17,7 @@ export class EventDetailsComponent implements OnInit {
     constructor(private eventService: EventService, private route: ActivatedRoute) {}
 
     ngOnInit() {
-        this.event = this.eventService.getEvent(+this.route.snapshot.params['id']);
+        this.event = this.eventService.getEvent(+this.route.snapshot.params.id);
         // with "+" we are casting string value into int (bcz url is string)
         // our dependency "route" can give us params from the url by their placeholder in routes.ts!
     }
