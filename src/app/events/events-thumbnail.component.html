@@ -1,34 +1,34 @@
 <div class="row border rounded p-3 mb-5">
   <div class="event-card col-12 col-md-7">
-    <h2 class="pb-3"> {{ event?.name }} </h2>
-    <h5 class="card-title">Price: ${{ event?.price }}</h5>
-    <p class="card-text">Date: {{ event?.date }}</p>
-    <div [ngSwitch]="event?.time" class="font-italic" [ngClass]="applyEarlyTimeClasses()">
+    <h2 class="pb-3"> {{ eventP?.name }} </h2>
+    <h5 class="card-title">Price: ${{ eventP?.price }}</h5>
+    <p class="card-text">Date: {{ eventP?.date }}</p>
+    <div [ngSwitch]="eventP?.time" class="font-italic" [ngClass]="applyEarlyTimeClasses()">
       <!-- 
-        [class.limegreen]="event?.time ==='8:00 am'"
-        [style.color]="event?.time === '8:00 am ? 'limegreen' : '#bbb'"
+        [class.limegreen]="eventP?.time ==='8:00 am'"
+        [style.color]="eventP?.time === '8:00 am ? 'limegreen' : '#bbb'"
         If time is 8:00am, apply our 'limegreen' css class
         But if we want more classes to be applied, then -> ngClass
         if we wanted any our css class as well (to always apply), there'd be no problem
 
         alternatively: [ngStyle]="applyEarlyTimeStyle()
       -->
-      <span>Time: {{ event?.time }}</span>
+      <span>Time: {{ eventP?.time }}</span>
       <span *ngSwitchCase="'8:00 am'">(Early start)</span>
       <span *ngSwitchCase="'10:00 am'">(Late start)</span>
       <span *ngSwitchDefault>(Normal start)</span>
     </div>
-    <p class="card-text" *ngIf="event?.location">
-      Location: {{ event?.location?.address }}<span class="pad-left">{{ event?.location?.city }},
-        {{ event?.location?.country}}</span></p>
-    <p class="card-text" [hidden]="!event?.onlineUrl">
+    <p class="card-text" *ngIf="eventP?.location">
+      Location: {{ eventP?.location?.address }}<span class="pad-left">{{ eventP?.location?.city }},
+        {{ eventP?.location?.country}}</span></p>
+    <p class="card-text" [hidden]="!eventP?.onlineUrl">
         Website: <a href="{{ event?.onlineUrl }}"> Click</a>
     </p>
-    <button class="btn pink-primary" (click)="passDataToParent()">More
+    <button class="btn pink-primary" (click)="passDataToParent()" [routerLink]="['/events', eventP.id ]">More
       information</button>
-      <!-- (click)="passDataToParent()" put it if you want to see how child and parent component communicate [routerLink]="['/events', event.id ]"  -->
+      <!-- (click)="passDataToParent()" -> communication of child and parent components -->
   </div>
   <div class="col-12 col-md-5">
-    <img src='{{ event?.imageUrl }}' width='200' height='auto' />
+    <img src='{{ eventP?.imageUrl }}' width='200' height='auto' />    
 </div>
 </div>

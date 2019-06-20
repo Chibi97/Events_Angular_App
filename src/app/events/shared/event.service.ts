@@ -6,7 +6,7 @@ import { IEvent } from './event.model';
 @Injectable()
 export class EventService {
   getEvets(): Observable<IEvent[]> {
-    const subject = new Subject<IEvent[]>(); // Observable type
+    const subject = new Subject<IEvent[]>(); // Subject implements Observable
     // simulate async call
     setTimeout(() => {
       // tslint:disable-next-line: no-use-before-declare
@@ -16,7 +16,7 @@ export class EventService {
     return subject;
     /*
       Obervables are streams of data (like arrays) but data arrives over time.
-      After 1 secs data is added to the stream
+      After 1 sec data is added to the stream
     */
   }
 

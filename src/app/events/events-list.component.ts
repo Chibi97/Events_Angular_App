@@ -17,13 +17,14 @@ export class EventsListComponent implements OnInit {
     // like window.onload(fn)
 
     this.events = this.route.snapshot.data.events;
-    /*When the route was resolved and EventListResolver was called, it sent us data
-      that we accepted in "events" property. Now that prop is available within snapshot.data
+    /* When the route was resolved and EventListResolver was called, it sent us data
+      that we accepted in "events" property. Data is available within snapshot.data
       bcz everything that comes from routes is associated with snapshot.
       We are doing this to properly simulate real-life scenario -- waiting for ajax.
       Bcz our service injects getEvents() result to route, our whole component is not loaded
       until data arrives.
     */
+
     /* this.eventService.getEvets().subscribe(events => {
         this.events = events;
       });
@@ -33,13 +34,16 @@ export class EventsListComponent implements OnInit {
     */
   }
 
-  handleClick(eventName) {
-    console.log('success - toastr');
-    // this.notification.success(eventName);
-  }
-
   handleEventFromChild(data) {
     console.log('parent recieved:', data + ' from child component.');
-
   }
+
+  messageFromParent() {
+    console.log('Hello from a parent - events list');
+  }
+
+  // handleClick(eventName) {
+  //   console.log('success - toastr');
+  //   this.notification.success(eventName);
+  // }
 }

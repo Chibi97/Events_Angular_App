@@ -12,12 +12,12 @@ export class EventListResolver implements Resolve<any> {
             map(events => events));
 
         /* eventService returns observable, and we need to
-        actually return an obserable so that angular can watch
+        actually return an obserable here so that angular can watch
         the observable and see when it finishes.
 
-        if we were to call subscribe() here the val that'd be returned
-        wouldn't be observable, but a subscription.
-        Map helps us pack events as observable and returns it.
+        if we were to call subscribe() here, the val that'd be
+        returned wouldn't be observable, but a subscription.
+        Map helps us pack events as observable and return it.
         */
     }
 }

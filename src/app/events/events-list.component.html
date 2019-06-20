@@ -2,14 +2,14 @@
   <div class="spacer py-5"></div>
   <h1>Upcoming Angular Events</h1>
   <hr>
-  <app-event-thumbnail *ngFor='let event of events' [event]='event' (eventFromChild)="handleEventFromChild($event)" ></app-event-thumbnail>
+  <app-event-thumbnail #thumbnail *ngFor='let event of events' [eventP]='event' (eventFromChild)="handleEventFromChild($event)"></app-event-thumbnail>
 </div>
 
 <!--
 ~~~ PROPERTY BINDING
-  * So basically, with [] we are telling Angular that we'll pass paramter form this component
-  * to Event-Thumbnails component (which will be named there as "event").
-  * [name] must match with object name in the child component that expects param (Thumbnail)
+  * So basically, with [] we are telling Angular that we'll pass paramter from this component (parent)
+  * to Event-Thumbnails component (child component, which will be named there as "eventP" - "P" as "from parent").
+  * [name] must match with object name in the child (Thumbnail) that expects param -> @Input eventP: any;
 
 ~~~ EVENT BINDING
   <app-event-thumbnail (eventFromChild)="handleEventFromChild($event)"></app-event-thumbnail>
@@ -19,15 +19,17 @@
   * component. $event is the parameter that child has given us. If we want more params, we should
   * wrap them into an object.
 
-~~~ TEMPLATE REFERENCE VAIRABLES
-  <app-event-thumbnail #thumbnail [event]="eventObj"></app-event-thumbnail>
+~~~ TEMPLATE REFERENCE VARIABLES
+  <app-event-thumbnail #thumbnail [eventP]="event"></app-event-thumbnail>
   <h3>{{ thumbnail.someProperty }}</h3>
-  <button class="btn btn-primary" (click)="thumbnail.logFoo()">Log foo</button>
+  <button class="btn btn-primary" (click)="thumbnail.messageFromChild()">Log message</button>
 
   * Declared with # as prefix
   * Useful to call methods/props on a child component or to bind data in a child
   * So that #variable points to a component, and then we can access any public methods/props
   * of that component using #variable.
+  * We can display from a child in a parent too (someProperty)
+  * Important: for some reason this won't work when there's click events and *ngFor in the same line
 
 ~~~ STRUCTURAL DIRECTIVES
   * Ones starting with * (asterisk) 
