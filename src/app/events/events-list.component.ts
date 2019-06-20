@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { EventService } from './shared/event.service';
 import { NotificationService } from '../services/notification.service';
 import { ActivatedRoute } from '@angular/router';
+import { IEvent } from './shared/index';
 @Component({
   // selector: 'app-events-list', we dont't need it, we are using routing
   templateUrl: './events-list.component.html'
 })
 
 export class EventsListComponent implements OnInit {
-  events: any[];
+  events: IEvent[];
   constructor(private route: ActivatedRoute, private eventService: EventService, private notification: NotificationService) {
   }
 
