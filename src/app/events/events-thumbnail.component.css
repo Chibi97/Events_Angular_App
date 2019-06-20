@@ -7,6 +7,10 @@
   color: #bbb;
 }
 
+.border {
+  border: 1px solid #AA6373 !important;
+}
+
 .limegreen {
   color: limegreen;
 }

@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
             <h3>Create Event Form placeholder</h3>
             <br/>
             <br/>
-            <button type="submit" class="btn btn-primary">Save</button>
-            <button type="button" (click)="cancel()" class="btn btn-default">Cancel</button>
+            <button type="submit" class="btn pink-primary">Save</button>
+            <button type="button" (click)="cancel()" class="btn pink-default">Cancel</button>
         </div>
     `
 })

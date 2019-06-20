@@ -8,8 +8,8 @@ import { Component } from '@angular/core';
       <h3>Edit profile form will go here</h3>
       <br />
       <br />
-      <button type="submit" class="btn btn-primary">Save</button>
-      <button type="button" class="btn btn-default">Cancel</button>
+      <button type="submit" class="btn pink-primary">Save</button>
+      <button type="button" class="btn pink-default">Cancel</button>
     </div>
   `,
 })

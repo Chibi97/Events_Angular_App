@@ -10,6 +10,28 @@ nav {
   background: #392061 !important;
 }
 
+.pink-primary {
+  background-color: #AA6473;
+  color: #F0F2A6;
+  border-color: #AA6473;
+  font-weight: 700;
+}
+
+.pink-default {
+  color: #F0F2A6;
+  background: transparent;
+}
+
+.pink-default:hover {
+  color: #AA6373;
+}
+
+.pink-primary:hover {
+  color: #AA6473;
+  background-color: #F0F2A6;
+  border-color: #F0F2A6;
+}
+
 h1, h2, h3 { 
   color: #AA6373;
 }

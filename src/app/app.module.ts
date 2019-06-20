@@ -3,21 +3,25 @@ import { NgModule } from '@angular/core';
 // import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {
+  EventsListComponent,
+  EventsThumbnailComponent,
+  EventService,
+  EventDetailsComponent,
+  CreateEventComponent,
+  EventRouteActivator,
+  EventListResolver
+
+} from './events/index';
 
 import { EventsAppComponent } from './events-app.component';
-import { EventsListComponent } from './events/events-list.component';
-import { EventsThumbnailComponent } from './events/events-thumbnail.component';
 import { NavbarComponent } from './nav/navbar.component';
-import { EventService } from './events/shared/event.service';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
-import { NotificationService } from './services/notification.service';
-import { EventDetailsComponent } from './events/event-details/event-details.component';
-import { appRoutes } from './routes';
-import { CreateEventComponent } from './events/create-event.component';
 import { Error404Component } from './errors/404.component';
-import { EventRouteActivator } from './events/event-details/event-route-activator.service';
-import { EventListResolver } from './events/events-list-resolver.service';
+import { NotificationService } from './services/notification.service';
+import { ToastrModule } from 'ngx-toastr';
+import { appRoutes } from './routes';
 
 @NgModule({
   imports: [
