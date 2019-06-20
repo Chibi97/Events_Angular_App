@@ -24,3 +24,14 @@ export class CreateEventComponent {
         // redirection
     }
 }
+
+/**
+ * Two options when using Angular forms:
+ * 1) Template based
+ *    - completely in HTML
+ *    - cross field validation is difficult
+ *    - unit test are not available if we use it
+ *    - good for simple forms
+ * 2) Model - Reactive based
+ *    - all logic is in the component
+ */

@@ -22,6 +22,7 @@ import { Error404Component } from './errors/404.component';
 import { NotificationService } from './services/notification.service';
 import { ToastrModule } from 'ngx-toastr';
 import { appRoutes } from './routes';
+import { AuthService } from './user/auth.service';
 
 @NgModule({
   imports: [
@@ -57,7 +58,8 @@ import { appRoutes } from './routes';
         when that string is requested, checkDirtyState fn will be provided
       */
     },
-    EventListResolver
+    EventListResolver,
+    AuthService
   ],
   bootstrap: [EventsAppComponent]
 })

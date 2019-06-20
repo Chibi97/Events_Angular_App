@@ -1,0 +1,34 @@
+<h1 class="spacer pt-5">Login</h1>
+<hr>
+<div class="col-md-4">
+  <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)" autocomplete="off">
+    <div class="form
+    -group">
+      <label for="userName">User Name:</label>
+      <input (ngModel)="userName" name="userName" id="userName" type="text" class="form-control" placeholder="User Name..." />
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input (ngModel)="password" name="password" id="password" type="password" class="form-control" placeholder="Password..." />
+    </div>
+
+    <button type="submit" class="btn pink-primary">Login</button>
+    <button type="button" class="btn pink-default" (click)="cancel()">Cancel</button>
+  </form>
+</div>
+<!-- We could bind what someone typed like this: <input (input)="userName=$event.target.value" />
+    but the sintax is terrible, so we'll use another way: ngModel
+
+    [] => bind component property to HTML element, commonly used to display data from component on the page
+    () => bind HTML element to component method/prop, commonly used for responding to events 
+    [()] => TWO-WAY BINDING for editing existing data
+    We want to display exitsting data and also bind what someone has typed in to a component property (update it as someone types,
+    so we can sent http request with it or smth)
+    For a login form, we don't want anything to initialy display, thus we need only one-way binding
+
+    NgModel requires also a name attribute in html
+    If we don't have same-named properties in the component, ngModel would bind it to the form.
+    We just need to add local variable on the form with #.
+    We defined a variable as a wrapper to ngForm and passed form's values to login method.
+    It's better to use (ngSubmit) than (submit) bcz it handles few things, like preventing form from submiting to the server.
+-->
