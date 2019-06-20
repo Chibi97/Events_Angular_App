@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { EventService } from './shared/event.service';
 import { NotificationService } from '../services/notification.service';
 import { ActivatedRoute } from '@angular/router';
-
 @Component({
   // selector: 'app-events-list', we dont't need it, we are using routing
   templateUrl: './events-list.component.html'
@@ -22,7 +21,7 @@ export class EventsListComponent implements OnInit {
       that we accepted in "events" property. Now that prop is available within snapshot.data
       bcz everything that comes from routes is associated with snapshot.
       We are doing this to properly simulate real-life scenario -- waiting for ajax.
-      Bcz our service injects getEvents() result to route, our whole component is not loaded 
+      Bcz our service injects getEvents() result to route, our whole component is not loaded
       until data arrives.
     */
     /* this.eventService.getEvets().subscribe(events => {
@@ -39,7 +38,8 @@ export class EventsListComponent implements OnInit {
     // this.notification.success(eventName);
   }
 
-  // handleEventClick(data) {
-  //     console.log('recieved:', data);
-  // }
+  handleEventFromChild(data) {
+    console.log('parent recieved:', data + ' from child component.');
+
+  }
 }

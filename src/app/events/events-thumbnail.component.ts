@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { TouchSequence } from 'selenium-webdriver';
+import { IEvent } from './shared/event.model';
 
 @Component({
     selector: 'app-event-thumbnail',
@@ -8,23 +9,20 @@ import { TouchSequence } from 'selenium-webdriver';
 })
 
 export class EventsThumbnailComponent {
-    @Input() event: any;
+    @Input() event: IEvent;
     // tells angular that we expect data from other (child) component
     // @ -> DECORATOR
-    @Output() eventClick = new EventEmitter();
+    @Output() eventFromChild = new EventEmitter();
     someProperty: any = 'Text from the child component (Thumbnail)';
 
-    handleClick() {
-        // (click)="handleClick()" on button
-        this.eventClick.emit(this.event.name);
-        console.log('passing data: ' + this.event.name + ' to who wants to listen');
-    }
-    // if we want to pass data from parent to child component
-    // so that the parent can receive some info when some event
-    // like click occurs within child component.
-
-    logFoo() {
-        console.log('foo');
+    passDataToParent() {
+        // (click)="hassDataToParent()" on button in html
+        this.eventFromChild.emit(this.event.name);
+        console.log('passing data from thumbnail(child) component: ' + this.event.name + ' to who wants to listen');
+        /* if we want to pass data from parent to child component so
+           that the parent can receive information when some event,
+           like click, occurs within child component.
+        */
     }
 
     applyEarlyTimeClasses() {

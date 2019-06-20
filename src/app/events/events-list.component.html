@@ -2,20 +2,20 @@
   <div class="spacer py-5"></div>
   <h1>Upcoming Angular Events</h1>
   <hr>
-  <app-event-thumbnail *ngFor='let event of events' [event]='event' (click)="handleClick(event.name)"></app-event-thumbnail>
+  <app-event-thumbnail *ngFor='let event of events' [event]='event' (eventFromChild)="handleEventFromChild($event)" ></app-event-thumbnail>
 </div>
 
-<!-- 
+<!--
 ~~~ PROPERTY BINDING
   * So basically, with [] we are telling Angular that we'll pass paramter form this component
   * to Event-Thumbnails component (which will be named there as "event").
   * [name] must match with object name in the child component that expects param (Thumbnail)
 
 ~~~ EVENT BINDING
-  <app-event-thumbnail (eventClick)="handleEventClick($event)"></app-event-thumbnail>
+  <app-event-thumbnail (eventFromChild)="handleEventFromChild($event)"></app-event-thumbnail>
 
-  * "eventClick" must match @Output "eventClick" property in a child component!
-  * So the event is fired on our thumbnail(child), call function handleEventClick from this (parent)
+  * "eventFromChild" must match @Output "eventFromChild" property in a child component!
+  * So the event is fired on our thumbnail(child), call function handleEventFromChild from this (parent)
   * component. $event is the parameter that child has given us. If we want more params, we should
   * wrap them into an object.
 

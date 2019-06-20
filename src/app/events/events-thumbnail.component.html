@@ -24,9 +24,9 @@
     <p class="card-text" [hidden]="!event?.onlineUrl">
         Website: <a href="{{ event?.onlineUrl }}"> Click</a>
     </p>
-    <button class="btn pink-primary" [routerLink]="['/events', event.id ]">More
+    <button class="btn pink-primary" (click)="passDataToParent()">More
       information</button>
-      <!-- (click)="handleClick()" removed! -->
+      <!-- (click)="passDataToParent()" put it if you want to see how child and parent component communicate [routerLink]="['/events', event.id ]"  -->
   </div>
   <div class="col-12 col-md-5">
     <img src='{{ event?.imageUrl }}' width='200' height='auto' />
