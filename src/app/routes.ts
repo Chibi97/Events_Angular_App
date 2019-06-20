@@ -22,7 +22,9 @@ export const appRoutes: Routes = [
         // (in our case: canActivate is a service, and canDeact is a fn)
     },
     { path: 'notfound', component: Error404Component},
-    { path: '', redirectTo: '/events', pathMatch: 'full'}
+    { path: '', redirectTo: '/events', pathMatch: 'full'},
+    { path: 'user', loadChildren: './user/user.module#UserModule' }
+    // when /user is hit, load user module!
 ];
 
 // pathMatch can be either "full" or "prefix"
