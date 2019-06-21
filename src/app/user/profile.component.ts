@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { AuthService } from './auth.service';
 
 @Component({
     template: `
@@ -13,6 +15,18 @@ import { Component } from '@angular/core';
     </div>
   `,
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
+  constructor(private authService: AuthService) { }
+
+  ngOnInit() {
+  //   let firstName = new FormControl(
+  //     this.authService.currentUser.firstName, Validators.required
+  //   );
+
+  //   let lastName = new FormControl(
+  //     this.authService.currentUser.lastName, Validators.required
+  //   );
+  // }
 
 }
+
