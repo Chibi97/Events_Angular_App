@@ -23,6 +23,7 @@ import { NotificationService } from './services/notification.service';
 import { ToastrModule } from 'ngx-toastr';
 import { appRoutes } from './routes';
 import { AuthService } from './user/auth.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -33,6 +34,8 @@ import { AuthService } from './user/auth.service';
     // AppRoutingModule,
     NgbModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot()
   ],
   declarations: [

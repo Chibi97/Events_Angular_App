@@ -1,32 +1,51 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 @Component({
-    template: `
-    <h1>Edit Your Profile</h1>
-    <hr>
-    <div class="col-md-6">
-      <h3>Edit profile form will go here</h3>
-      <br />
-      <br />
-      <button type="submit" class="btn pink-primary">Save</button>
-      <button type="button" class="btn pink-default">Cancel</button>
-    </div>
-  `,
+  templateUrl: './profile.component.html',
+  styles: [`
+    em { fload: right; color: crimson; padding-left: 10px; }
+    .error input { background-color: #E3C3C5; }
+    .error ::-webkit-input-placeholder { color: #999; }
+    .error ::-moz-input-placeholder { color: #999; }
+    .error :-moz-input-placeholder { color: #999; }
+    .error :ms-input-placeholder { color: #999; }
+  `]
 })
+
 export class ProfileComponent implements OnInit {
-  constructor(private authService: AuthService) { }
+  profileForm: FormGroup;
+  firstName: FormControl;
+  lastName: FormControl;
 
+  constructor(private auth: AuthService, private router: Router) { }
   ngOnInit() {
-  //   let firstName = new FormControl(
-  //     this.authService.currentUser.firstName, Validators.required
-  //   );
+    this.firstName = new FormControl(this.auth.currentUser.firstName,
+      [Validators.required, Validators.pattern('[A-Z][a-z].*')]);
+    this.lastName = new FormControl(this.auth.currentUser.lastName,
+      [Validators.required, Validators.pattern('[A-Z][a-z].*')]);
+    this.profileForm = new FormGroup({
+      firstName: this.firstName,
+      lastName: this.lastName
+    });
+  }
 
-  //   let lastName = new FormControl(
-  //     this.authService.currentUser.lastName, Validators.required
-  //   );
-  // }
+  validField(field) {
+    return field.valid || field.untouched;
+  }
 
+  saveProfile(values) {
+    if (this.profileForm.valid) {
+      this.auth.updateCurrentUser(values.firstName, values.lastName);
+      this.router.navigate(['events']);
+    }
+  }
+
+  cancel() {
+    this.router.navigate(['events']);
+  }
 }
+
 
