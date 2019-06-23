@@ -22,4 +22,21 @@
       </address>
     </div>
   </div>
+  <hr />
+
+  <div class="row">
+    <div class="col-md-2">
+      <a (click)="showSessions()" [ngClass]="{'tab-active': !addMode}">Sessions</a>
+    </div>
+
+    <div class="col-md-2">
+      <a (click)="addSession()" [ngClass]="{'tab-active': addMode}">Add session</a>
+    </div>
+  </div>
+  
+  <app-session-list *ngIf="!addMode" [sessions]="event?.sessions"></app-session-list>
+  <!-- binding event.sessions that came from event service to
+      @Input() sessions[] of this component
+  -->
+  <app-create-session *ngIf="addMode"></app-create-session>
 </div>

@@ -1,7 +1,6 @@
 <div>
   <div class="spacer py-5"></div>
-  <h1>Upcoming Angular Events</h1>
-  <hr>
+  <h1 class="pb-3">Upcoming Angular Events</h1>
   <app-event-thumbnail #thumbnail *ngFor='let event of events' [eventP]='event' (eventFromChild)="handleEventFromChild($event)"></app-event-thumbnail>
 </div>
 

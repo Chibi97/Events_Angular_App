@@ -3,6 +3,7 @@ import { Validators, FormControl, FormGroup } from '@angular/forms';
 import { ISession, restrictedWords } from '../shared/index';
 
 @Component({
+    selector: 'app-create-session',
     templateUrl: './create-session.component.html',
     styles: [`
     em { fload: right; color: crimson; padding-left: 10px; }
