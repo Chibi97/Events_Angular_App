@@ -5,7 +5,8 @@ import {
     EventDetailsComponent,
     CreateEventComponent,
     EventRouteActivator,
-    EventListResolver
+    EventListResolver,
+    CreateSessionComponent
 } from './events/index';
 
 export const appRoutes: Routes = [
@@ -23,6 +24,7 @@ export const appRoutes: Routes = [
         // guard can either be function or a service
         // (in our case: canActivate is a service, and canDeact is a fn)
     },
+    { path: 'events/session/new', component: CreateSessionComponent },
     { path: 'notfound', component: Error404Component},
     { path: '', redirectTo: '/events', pathMatch: 'full'},
     { path: 'user', loadChildren: './user/user.module#UserModule' }
