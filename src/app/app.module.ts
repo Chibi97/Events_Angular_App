@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 
 import {
   EventsListComponent,
@@ -18,15 +20,14 @@ import {
 
 } from './events/index';
 
-import { EventsAppComponent } from './events-app.component';
-import { NavbarComponent } from './nav/navbar.component';
-import { Error404Component } from './errors/404.component';
-import { NotificationService } from './services/notification.service';
-import { ToastrModule } from 'ngx-toastr';
 import { appRoutes } from './routes';
 import { AuthService } from './user/auth.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NavbarComponent } from './nav/navbar.component';
+import { Error404Component } from './errors/404.component';
+import { EventsAppComponent } from './events-app.component';
+import { CollapsibleBlockComponent } from './common/collapsible-block.component';
 
+import { NotificationService } from './services/notification.service';
 @NgModule({
   imports: [
   /* importing other modules (which makes all of its exported declarations
@@ -50,7 +51,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CreateEventComponent,
     Error404Component,
     CreateSessionComponent,
-    SessionListComponent
+    SessionListComponent,
+    CollapsibleBlockComponent
   ],
   providers: [
     // services are declared here
