@@ -13,9 +13,9 @@
       <div><strong>Date:</strong> {{event?.date}}</div>
       <div><strong>Time:</strong> {{event?.time}}</div>
       <div><strong>Price:</strong> ${{event?.price}}</div>
-    </div>
+    </div> 
     <div class="col-md-6">
-      <address *ngIf="event?.location">
+    <address *ngIf="event?.location">
         <strong>Address:</strong><br />
         {{event?.location?.address}}<br />
         {{event?.location?.city}}, {{event?.location?.country}}
@@ -38,5 +38,5 @@
   <!-- binding event.sessions that came from event service to
       @Input() sessions[] of this component
   -->
-  <app-create-session *ngIf="addMode"></app-create-session>
+  <app-create-session *ngIf="addMode" (cancelAddSession)="cancelAddSession()" (saveNewSession)="saveNewSession($event)"></app-create-session>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Validators, FormControl, FormGroup } from '@angular/forms';
 import { ISession, restrictedWords } from '../shared/index';
 
@@ -16,6 +16,8 @@ import { ISession, restrictedWords } from '../shared/index';
   `]
 })
 export class CreateSessionComponent implements OnInit {
+    @Output() saveNewSession = new EventEmitter(); // emit msg to parent component when session is saved
+    @Output() cancelAddSession = new EventEmitter();
     sessionForm: FormGroup;
     // since we defined public form controls here, in HTML we can access it like name.valid
     // we don't have to type form.controls.name everytime.
@@ -53,7 +55,10 @@ export class CreateSessionComponent implements OnInit {
             abstract: values.abstract,
             voters: []
         };
+        this.saveNewSession.emit(session);
+    }
 
-        console.log(session);
+    cancel() {
+        this.cancelAddSession.emit();
     }
 }
