@@ -16,7 +16,8 @@ import {
   EventRouteActivator,
   EventListResolver,
   CreateSessionComponent,
-  SessionListComponent
+  SessionListComponent,
+  DurationPipe
 
 } from './events/index';
 
@@ -52,7 +53,8 @@ import { NotificationService } from './services/notification.service';
     Error404Component,
     CreateSessionComponent,
     SessionListComponent,
-    CollapsibleBlockComponent
+    CollapsibleBlockComponent,
+    DurationPipe
   ],
   providers: [
     // services are declared here

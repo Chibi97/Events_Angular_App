@@ -1,8 +1,8 @@
 <div class="row indigo-block p-3 mb-5">
   <div class="col-12 col-md-7">
-    <h2 class="pb-3"> {{ eventP?.name }} </h2>
-    <h5 class="card-title">Price: ${{ eventP?.price }}</h5>
-    <p class="card-text">Date: {{ eventP?.date }}</p>
+    <h2 class="pb-3"> {{ eventP?.name | titlecase }} </h2>
+    <h5 class="card-title">Price: {{ eventP?.price | currency:'USD' }}</h5>
+    <p class="card-text">Date: {{ eventP?.date | date:'d/M/yyyy' }}</p>
     <div [ngSwitch]="eventP?.time" class="font-italic" [ngClass]="applyEarlyTimeClasses()">
       <!-- 
         [class.limegreen]="eventP?.time ==='8:00 am'"
