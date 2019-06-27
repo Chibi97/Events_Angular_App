@@ -38,8 +38,9 @@ hr {
   background: transparent;
 }
 
-.pink-default:hover {
+.pink-default:hover, .pink-default:focus {
   color: #AA6373;
+  box-shadow: none !important;
 }
 
 .pink-primary:hover {

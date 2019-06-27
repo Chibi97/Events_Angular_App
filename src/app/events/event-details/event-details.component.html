@@ -25,16 +25,26 @@
   <hr />
 
   <div class="row">
-    <div class="col-md-2">
+    <div class="col-12 col-md-2 mb-5">
       <a (click)="showSessions()" [ngClass]="{'tab-active': !addMode}">Sessions</a>
     </div>
 
-    <div class="col-md-2">
+    <div class="col-12 col-md-2 mb-5">
       <a (click)="addSession()" [ngClass]="{'tab-active': addMode}">Add session</a>
+    </div>
+
+    <div class="col-12 col-md-7" *ngIf="!addMode">
+      <button class="btn pink-default" [class.active]="filterBy === 'all' " (click)="filterBy = 'all'" >All</button>
+      <button class="btn pink-default" [class.active]="filterBy === 'beginner'"
+        (click)="filterBy = 'beginner'">Beginner</button>
+      <button class="btn pink-default" [class.active]="filterBy === 'intermediate'"
+        (click)="filterBy = 'intermediate'">Intermediate</button>
+      <button class="btn pink-default" [class.active]="filterBy === 'advanced'"
+        (click)="filterBy = 'advanced'">Advanced</button>
     </div>
   </div>
   
-  <app-session-list *ngIf="!addMode" [sessions]="event?.sessions"></app-session-list>
+  <app-session-list [filterBy]="filterBy" *ngIf="!addMode" [sessions]="event?.sessions"></app-session-list>
   <!-- binding event.sessions that came from event service to
       @Input() sessions[] of this component
   -->
