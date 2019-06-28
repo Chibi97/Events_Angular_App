@@ -26,8 +26,9 @@ import { AuthService } from './user/auth.service';
 import { NavbarComponent } from './nav/navbar.component';
 import { Error404Component } from './errors/404.component';
 import { EventsAppComponent } from './events-app.component';
-import { CollapsibleBlockComponent } from './common/collapsible-block.component';
 import { NotificationService } from './services/notification.service';
+import { CollapsibleBlockComponent, SimpleModalComponent } from './common/index';
+import { ModalTriggerDirective } from './common/modal-trigger.directive';
 
 @NgModule({
   imports: [
@@ -54,7 +55,9 @@ import { NotificationService } from './services/notification.service';
     CreateSessionComponent,
     SessionListComponent,
     CollapsibleBlockComponent,
-    DurationPipe
+    SimpleModalComponent,
+    DurationPipe,
+    ModalTriggerDirective
   ],
   providers: [
     // services are declared here

@@ -27,4 +27,7 @@ export class NavbarComponent {
             console.log(this.foundSessions);
         });
     }
+
+    // Component is an element, and Directive is an attribute, and with it
+    // we can attach new functionality to an existing DOM element.
 }
