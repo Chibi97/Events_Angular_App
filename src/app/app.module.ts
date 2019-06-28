@@ -27,8 +27,8 @@ import { NavbarComponent } from './nav/navbar.component';
 import { Error404Component } from './errors/404.component';
 import { EventsAppComponent } from './events-app.component';
 import { CollapsibleBlockComponent } from './common/collapsible-block.component';
-
 import { NotificationService } from './services/notification.service';
+
 @NgModule({
   imports: [
   /* importing other modules (which makes all of its exported declarations
@@ -71,6 +71,23 @@ import { NotificationService } from './services/notification.service';
     },
     EventListResolver,
     AuthService
+    /**
+     * It's actually important to specify types when we inject some service.
+     * When we type constructor(private service: SomeService), angular will
+     * look at the type, check if that service is in providers here, and
+     * make an instace for us.
+     *
+     * We can use longterm syntax like in Startup of dotnet project:
+     * { provide: Logger, useClass: FileLogger } where FileLogger is a concrete
+     * implementation of Logging interface (or generic here).
+     *
+     * We can also use "AddSingleton" from dotnet:
+     * { provide: MinimalLogger, useExisting: Logger }
+     * everytime MinLogger is requested, the same instance will be provided.
+     *
+     * Factory pattern can be used too:
+     * {provider: Logger, useFactory: someFactoryFunction() }
+     */
   ],
   bootstrap: [EventsAppComponent]
 })

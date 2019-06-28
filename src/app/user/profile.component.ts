@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
   templateUrl: './profile.component.html',
@@ -20,7 +21,7 @@ export class ProfileComponent implements OnInit {
   firstName: FormControl;
   lastName: FormControl;
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router, private notification: NotificationService) { }
   ngOnInit() {
     this.firstName = new FormControl(this.auth.currentUser.firstName,
       [Validators.required, Validators.pattern('[A-Z][a-z].*')]);
@@ -39,6 +40,7 @@ export class ProfileComponent implements OnInit {
   saveProfile(values) {
     if (this.profileForm.valid) {
       this.auth.updateCurrentUser(values.firstName, values.lastName);
+      this.notification.success('Profile saved!');
       this.router.navigate(['events']);
     }
   }
