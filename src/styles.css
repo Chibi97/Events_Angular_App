@@ -11,6 +11,25 @@ nav {
   background: #392061 !important;
 }
 
+.my-search {
+  cursor: pointer;
+  background: #aa6373;
+  border: none !important;
+  color: #392061;
+}
+
+.my-input {
+  border: none !important;
+  border-radius: 2px !important;
+  border-left: 3px solid #aa6373 !important;
+  background: #211c34 !important;
+  color: #aa6373 !important;
+}
+
+.my-input:hover, .my-input:focus {
+  box-shadow: 0 0 0 0.15rem #aa63734f !important;
+}
+
 hr {
   background-color: #392061;
 }

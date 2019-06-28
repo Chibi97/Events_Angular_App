@@ -4,37 +4,52 @@
     data-target="#navbarsDefault" aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarsDefault">
-    <ul class="navbar-nav mr-auto">
-      <li>
-        <a [routerLink]="['/events']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link" >All Events</a>
-        <!-- [routerLink]="['/events']" its this prop binding that sets "href" in the background!!
+  <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse col-12" id="navbarsDefault">
+    <div class="col-7">
+      <ul class="navbar-nav mr-auto">
+        <li>
+          <a [routerLink]="['/events']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+            class="nav-link">All Events</a>
+          <!-- [routerLink]="['/events']" its this prop binding that sets "href" in the background!!
             when the link is active, activate the "active" css class xD
         -->
-      </li>
+        </li>
 
-      <li>
-        <a [routerLink]="['/events/new']" routerLinkActive="active" class="nav-link">Create Event</a>
-      </li>
+        <li>
+          <a [routerLink]="['/events/new']" routerLinkActive="active" class="nav-link">Create Event</a>
+        </li>
 
-      <li>
-        <a *ngIf="auth.isAuthenticated()" [routerLink]="['user/profile']" routerLinkActive="active"
-          class="nav-link">Welcome, {{ auth.currentUser.firstName }}!</a>
-      </li>
+        <li>
+          <a *ngIf="auth.isAuthenticated()" [routerLink]="['user/profile']" routerLinkActive="active"
+            class="nav-link">Welcome, {{ auth.currentUser.firstName }}!</a>
+        </li>
 
-      <li>
-        <a *ngIf="!auth.isAuthenticated()" [routerLink]="['user/login']" routerLinkActive="active"
-          class="nav-link">Login</a>
-      </li>
-      
-      <li class="nav-item dropdown" ngbDropdown>
-        <a class="nav-link dropdown-toggle" id="id01" ngbDropdownToggle>Languages</a>
-        <div class="dropdown-menu" aria-labelledby="id01" ngbDropdownMenu>
-          <a class="dropdown-item" href="#">HTML</a>
-          <a class="dropdown-item" href="#">TS</a>
-          <a class="dropdown-item" href="#">JS</a>
+        <li>
+          <a *ngIf="!auth.isAuthenticated()" [routerLink]="['user/login']" routerLinkActive="active"
+            class="nav-link">Login</a>
+        </li>
+
+        <li class="nav-item dropdown" ngbDropdown>
+          <a class="nav-link dropdown-toggle" id="id01" ngbDropdownToggle>Languages</a>
+          <div class="dropdown-menu" aria-labelledby="id01" ngbDropdownMenu>
+            <a class="dropdown-item" href="#">HTML</a>
+            <a class="dropdown-item" href="#">TS</a>
+            <a class="dropdown-item" href="#">JS</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-12 col-md-4">
+      <div class="input-group mb-1 mt-1">
+        <input type="text" class="form-control my-input" placeholder="Recipient's username" aria-label="Recipient's username"
+          aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <span class="input-group-text my-search">
+            <i class="fas fa-search"></i>
+          </span>
         </div>
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
 </nav>

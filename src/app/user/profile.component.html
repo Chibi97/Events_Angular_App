@@ -5,7 +5,8 @@
     <form [formGroup]="profileForm" (ngSubmit)="saveProfile(profileForm.value )" autocomplete="off" novalidate>
       <div class="form-group" [ngClass]="{ 'error': !validField(profileForm.controls.firstName) }">
         <label for="firstName">First Name:</label>
-        <input formControlName="firstName" id="firstName" type="text" class="form-control" placeholder="First Name..." />
+        <input formControlName="firstName" id="firstName" type="text" class="form-control my-input"
+          placeholder="First Name..." />
         <!-- required in order to bind html elements to component.ts fields -->
         <em *ngIf="!validField(profileForm.controls.firstName) && profileForm.controls.firstName.errors.required">Required</em>
         <em
@@ -14,7 +15,8 @@
       </div>
       <div class="form-group" [ngClass]="{ 'error': !validField(profileForm.controls.lastName) }">
         <label for="lastName">Last Name:</label>
-        <input formControlName="lastName" id="lastName" type="text" class="form-control" placeholder="Last Name..." />
+        <input formControlName="lastName" id="lastName" type="text" class="form-control my-input"
+          placeholder="Last Name..." />
         <em
           *ngIf="!validField(profileForm.controls.lastName) && profileForm.controls.lastName.errors.required">Required</em>
         <em
