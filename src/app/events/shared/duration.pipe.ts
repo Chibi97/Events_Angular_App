@@ -17,7 +17,7 @@ export class DurationPipe implements PipeTransform {
  It is bad to use pipes for filtering and ordering lists bcz of the performance.
  The reason is simple: pipes are only re-run when the identity of objects are
  Identity is when object gets/loses reference. When new object is added to the
-  list, it gains a reference, but if it is removed, the reference is garbage-collected.
+ list, it gains a reference, and if it is removed, the reference is garbage-collected.
 
  The problem here is, if we happen to change any field of the object (name: John
  (and it used to be Fred)) the pipe won't be re-run and we'd still see past state
