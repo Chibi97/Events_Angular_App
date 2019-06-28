@@ -42,13 +42,14 @@
 
     <div class="col-12 col-md-4">
       <div class="input-group mb-1 mt-1">
-        <input type="text" class="form-control my-input" placeholder="Recipient's username" aria-label="Recipient's username"
-          aria-describedby="basic-addon2">
-        <div class="input-group-append">
-          <span class="input-group-text my-search">
-            <i class="fas fa-search"></i>
-          </span>
-        </div>
+        <form (ngSubmit)="searchSessions(searchTerm)" class="d-flex">
+          <input [(ngModel)]="searchTerm" name="searchTerm" type="text" class="form-control my-input" placeholder="Search sessions..." >
+          <div class="input-group-append">
+            <button class="input-group-text my-search">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

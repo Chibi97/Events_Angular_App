@@ -16,6 +16,8 @@ nav {
   background: #aa6373;
   border: none !important;
   color: #392061;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
 }
 
 .my-input {

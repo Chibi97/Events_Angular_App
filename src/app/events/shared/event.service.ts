@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 // Injectable is here bcz we'll need some other service used in our service (HTTP for example) later
 import { Subject, Observable } from 'rxjs';
-import { IEvent } from './event.model';
+import { IEvent, ISession } from './event.model';
 
 @Injectable()
 export class EventService {
@@ -38,6 +38,33 @@ export class EventService {
     const index = EVENTS.findIndex(x => x.id = event.id);
     // tslint:disable-next-line: no-use-before-declare
     EVENTS[index] = event;
+  }
+
+  searchSessions(searchTerm: string) {
+    const term = searchTerm.toLocaleLowerCase();
+    let results: ISession[] = [];
+
+    // tslint:disable-next-line: no-use-before-declare
+    EVENTS.forEach(event => {
+      let matching = event.sessions.filter(session => session.name.toLocaleLowerCase().indexOf(term) > -1);
+      matching = matching.map((session: any) => {
+        session.eventId = event.id;
+        return session;
+      });
+      results = results.concat(matching); // assigning matching from the forEach to local variable.
+    });
+
+    const subject = new Subject<ISession[]>();
+    setTimeout(() => {
+      subject.next(results);
+      subject.complete();
+    }, 1000);
+    return subject; // returning the observable!
+    /**
+     * We are filtering all sessions so that only those that cointain term stay in matching[].
+     * Then we are mapping that array so we also have an ID of the event which that session belongs to,
+     * bcz when we click on search result session, it need to take us to the event details.
+     */
   }
 }
 
