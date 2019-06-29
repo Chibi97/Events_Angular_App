@@ -7,6 +7,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 export class ModalTriggerDirective implements OnInit {
     @Input() content: any;
+    // @Input('appModalTrigger') modal: string; we can get the value of appModalTrigger="value" from html
     private el: HTMLElement;
 
     constructor(private modalService: NgbModal, ref: ElementRef ) {
@@ -15,11 +16,9 @@ export class ModalTriggerDirective implements OnInit {
 
     ngOnInit() {
         this.el.addEventListener('click', e => {
-            this.onClick();
+            this.modalService.open(this.content, { size: 'lg' });
+
         });
     }
 
-    onClick() {
-        this.modalService.open(this.content, { size: 'lg' });
-    }
 }

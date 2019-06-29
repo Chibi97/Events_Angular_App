@@ -7,8 +7,7 @@ import { NgTemplateOutlet } from '@angular/common';
     templateUrl: './simple-modal.component.html'
 })
 export class SimpleModalComponent implements OnInit {
-    // @Input() title: string;
-    // @Output() content: any;
+    @Input() title: string;
     @ViewChild('content') public content: ElementRef;
 
     constructor() {
