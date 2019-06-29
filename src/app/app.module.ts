@@ -17,8 +17,7 @@ import {
   EventListResolver,
   CreateSessionComponent,
   SessionListComponent,
-  DurationPipe
-
+  DurationPipe,
 } from './events/index';
 
 import { appRoutes } from './routes';
@@ -29,6 +28,7 @@ import { EventsAppComponent } from './events-app.component';
 import { NotificationService } from './services/notification.service';
 import { CollapsibleBlockComponent, SimpleModalComponent } from './common/index';
 import { ModalTriggerDirective } from './common/modal-trigger.directive';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [

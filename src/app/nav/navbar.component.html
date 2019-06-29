@@ -39,12 +39,6 @@
         </li>
       </ul>
     </div>
-    <!-- 
-      [ngbTypeahead]="search"
-      (focus)="focus$.next($event.target.value)"
-      (click)="click$.next($event.target.value)"
-      #instance="ngbTypeahead"
-   -->
 
     <div class="col-12 col-md-4">
       <div class="input-group mb-1 mt-1">
@@ -52,13 +46,31 @@
           <input [(ngModel)]="searchTerm"
             name="searchTerm"
             type="text"
-            id="typeahead-focus"
             class="form-control my-input"
             placeholder="Search sessions..." >
           <div class="input-group-append">
-             <button class="input-group-text my-search" appModalTrigger [content]="content">
-               <!-- appModalTrigger is an directive -->
-              <i class="fas fa-search"></i>
+
+            <!-- <ng-template #content let-modal class='search-modal'>
+              <div class="modal-header">
+                <h4 class="modal-title">Sessions</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <a class="list-group-item" *ngFor="let session of foundSessions"
+                  [routerLink]="['/events', session.eventId]">
+                  {{ session.name }}
+                </a>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+              </div>
+            </ng-template> -->
+
+            <button class="input-group-text my-search" appModalTrigger [content]="modal.content">
+              <!-- appModalTrigger is an directive -->
+            <i class="fas fa-search"></i>
             </button>
           </div>
         </form>
@@ -67,26 +79,11 @@
   </div>
 </nav>
 
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title">{{ title }}</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <ng-content></ng-content>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
-  </div>
-</ng-template>
-
-<!-- <app-simple-modal title="Matching Sessions">
+<app-simple-modal #modal title="Matching Sessions">
   <div class="list-group">
     <a class="list-group-item" *ngFor="let session of foundSessions"
       [routerLink]="['/events', session.eventId]">
       {{ session.name }}
     </a>
   </div>
-</app-simple-modal> -->
+</app-simple-modal>
