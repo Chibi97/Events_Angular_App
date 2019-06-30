@@ -33,7 +33,7 @@
       <a (click)="addSession()" [ngClass]="{'tab-active': addMode}">Add session</a>
     </div>
 
-    <div class="col-12 col-md-3">
+    <div class="col-12 col-md-3" *ngIf="!addMode">
       <button class="btn pink-default" [class.active]="sortBy === 'name' " (click)="sortBy='name'">
         <i class="fas fa-sort-alpha-down mr-2"></i>
         By name

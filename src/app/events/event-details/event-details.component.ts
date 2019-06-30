@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../shared/event.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { IEvent, ISession } from '../shared/index';
 
 @Component({
@@ -22,9 +22,19 @@ export class EventDetailsComponent implements OnInit {
     constructor(private eventService: EventService, private route: ActivatedRoute) {}
 
     ngOnInit() {
-        this.event = this.eventService.getEvent(+this.route.snapshot.params.id);
-        // with "+" we are casting string value into i  nt (bcz url is string)
+        this.route.params.forEach((params: Params) => {
+            this.event = this.eventService.getEvent(+params.id);
+            this.addMode = false;
+        });
+        /**
+         * In order to be able to navigate through seach sessions, we nedded to actually
+         * get event every time router.params.id changes. With the code below, that only
+         * happend when the page loaded, now is just like async call.
+         */
+
+        // this.event = this.eventService.getEvent(+this.route.snapshot.params.id);
         // our dependency "route" can give us params from the url by their placeholder in routes.ts!
+        // with "+" we are casting string value into int (bcz url is string)
     }
 
     addSession() {
