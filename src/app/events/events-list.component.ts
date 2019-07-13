@@ -10,7 +10,7 @@ import { IEvent } from './shared/index';
 
 export class EventsListComponent implements OnInit {
   events: IEvent[];
-  constructor(private route: ActivatedRoute, private eventService: EventService, private notification: NotificationService) {
+  constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -21,7 +21,7 @@ export class EventsListComponent implements OnInit {
     /* When the route was resolved and EventListResolver was called, it sent us data
       that we accepted in "events" property. Data is available within snapshot.data
       bcz everything that comes from routes is associated with snapshot.
-      We are doing this to properly simulate real-life scenario -- waiting for ajax.
+      We are doing this to properly simulate real-life scenario -- waiting for ajax call.
       Bcz our service injects getEvents() result to route, our whole component is not loaded
       until data arrives.
     */

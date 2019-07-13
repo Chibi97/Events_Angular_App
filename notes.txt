@@ -129,6 +129,8 @@ _______*_______ HTTP and RxJS _______*_______
   5) combining observables into a single one
   6) retry (if first try fails, try again)
   
+npm run server
+npm start
 
 
 

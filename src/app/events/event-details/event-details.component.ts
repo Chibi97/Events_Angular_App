@@ -22,9 +22,22 @@ export class EventDetailsComponent implements OnInit {
     constructor(private eventService: EventService, private route: ActivatedRoute) {}
 
     ngOnInit() {
-        this.route.params.forEach((params: Params) => {
-            this.event = this.eventService.getEvent(+params.id);
+        this.route.data.forEach((data) => {
+            // this.event = this.eventService.getEvent(+params.id); if not observable
+
+            // this.eventService.getEvent(+params.id).subscribe((response: IEvent) => {
+            //     this.event = response;
+            //     this.addMode = false;
+            // }); SUBSCRIPTION IS NOW DONE IN THE RESOLVER!
+
+            this.event = data.event;
             this.addMode = false;
+            /*
+            When the route was resolved and EventResolver was called, it subscibed to ajax call
+            and sent us data that we now accepted in "event" property. Data is available
+            within route.data.
+            Event gets loaded from resolver even before this component is executed!!
+            */
         });
         /**
          * In order to be able to navigate through seach sessions, we nedded to actually

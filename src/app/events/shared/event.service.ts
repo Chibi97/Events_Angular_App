@@ -1,24 +1,45 @@
 import { Injectable } from '@angular/core';
 // Injectable is here bcz we'll need some other service used in our service (HTTP for example) later
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { IEvent, ISession } from './event.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class EventService {
 
+  constructor(private http: HttpClient) { }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return of(result as T); // converting to observable
+    };
+  }
+
   getEvets(): Observable<IEvent[]> {
-    const subject = new Subject<IEvent[]>(); // Subject implements Observable
-    // simulate async call
-    setTimeout(() => {
-      // tslint:disable-next-line: no-use-before-declare
-      subject.next(EVENTS);
-      subject.complete();
-    }, 1000);
-    return subject;
-    /*
-      Obervables are streams of data (like arrays) but data arrives over time.
-      After 1 sec data is added to the stream
-    */
+
+    return this.http.get<IEvent[]>('/api/events')
+      .pipe(catchError(this.handleError<IEvent[]>('getEvents', [])));
+
+    // const subject = new Subject<IEvent[]>(); // Subject implements Observable
+    // // simulate async call
+    // setTimeout(() => {
+    //   // tslint:disable-next-line: no-use-before-declare
+    //   subject.next(EVENTS);
+    //   subject.complete();
+    // }, 1000);
+    // return subject;
+    // /*
+    //   Obervables are streams of data (like arrays) but data arrives over time.
+    //   After 1 sec data is added to the stream
+    // */
+  }
+
+  getEvent(id: number): Observable<IEvent> {
+    return this.http.get<IEvent>('/api/events/' + id)
+      .pipe(catchError(this.handleError<IEvent>('getEvent')));
+    // return EVENTS.find(event => event.id === id);
   }
 
   saveEvent(event) {
@@ -26,11 +47,6 @@ export class EventService {
     event.session = [];
     // tslint:disable-next-line: no-use-before-declare
     EVENTS.push(event);
-  }
-
-  getEvent(id: number): IEvent {
-    // tslint:disable-next-line: no-use-before-declare
-    return EVENTS.find( event => event.id === id );
   }
 
   updateEvent(event) {
@@ -68,7 +84,8 @@ export class EventService {
   }
 }
 
-const EVENTS: IEvent[] = [{
+const EVENTS: IEvent[] = [
+  {
     id: 1,
     name: 'Angular Connect',
     date: new Date('9/26/2036'),

@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-// import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { HttpClientModule } from '@angular/common/http';
 
 import {
   EventsListComponent,
@@ -13,7 +13,6 @@ import {
   EventService,
   EventDetailsComponent,
   CreateEventComponent,
-  EventRouteActivator,
   EventListResolver,
   CreateSessionComponent,
   SessionListComponent,
@@ -21,6 +20,7 @@ import {
   VoterService,
   DurationPipe,
   LocationValidator,
+  EventResolver,
 } from './events/index';
 
 import {
@@ -41,12 +41,12 @@ import { NotificationService } from './services/notification.service';
      and providers available to this module) */
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    // AppRoutingModule,
     NgbModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    HttpClientModule
   ],
   declarations: [
     // component, pipe or directive must be declared here
@@ -70,7 +70,8 @@ import { NotificationService } from './services/notification.service';
     // services are declared here
     EventService,
     NotificationService,
-    EventRouteActivator, // OUR CUSTOM ROUTE GUARD
+    EventResolver,
+    // EventRouteActivator, // OUR CUSTOM ROUTE GUARD
     {
       provide: 'canDeactivateCreateEvent',
       useValue: checkDirtyState
@@ -81,7 +82,7 @@ import { NotificationService } from './services/notification.service';
     },
     EventListResolver,
     AuthService,
-    VoterService
+    VoterService,
     /**
      * It's actually important to specify types when we inject some service.
      * When we type constructor(private service: SomeService), angular will

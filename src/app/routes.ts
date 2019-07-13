@@ -4,9 +4,9 @@ import {
     EventsListComponent,
     EventDetailsComponent,
     CreateEventComponent,
-    EventRouteActivator,
     EventListResolver,
-    CreateSessionComponent
+    CreateSessionComponent,
+    EventResolver
 } from './events/index';
 
 export const appRoutes: Routes = [
@@ -20,7 +20,8 @@ export const appRoutes: Routes = [
     // before resolving this route, call EventsListResolver. It shall return some data that we'll accept with prop events
     {
         path: 'events/:id', component: EventDetailsComponent,
-        canActivate: [EventRouteActivator],
+        resolve: {event: EventResolver}
+        // canActivate: [EventRouteActivator],
         // guard can either be function or a service
         // (in our case: canActivate is a service, and canDeact is a fn)
     },

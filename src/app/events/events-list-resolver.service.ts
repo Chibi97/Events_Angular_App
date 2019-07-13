@@ -8,9 +8,11 @@ export class EventListResolver implements Resolve<any> {
 
     constructor(private eventService: EventService) {}
     resolve() {
-        return this.eventService.getEvets().pipe(
-            map(events => events));
+        return this.eventService.getEvets();
+        // http call won't happen until someone subscribes to it
+        // resolver subscribes automatically cuz its a resolver
 
+        // .pipe(map(events => events));
         /* eventService returns observable, and we need to
         actually return an obserable here so that angular can watch
         the observable and see when it finishes.
