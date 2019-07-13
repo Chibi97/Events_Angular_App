@@ -1,5 +1,11 @@
 <div class="row mt-3" *ngFor="let session of visibleSessions">
-  <div class="col-md-12">
+  <div *ngIf="auth.isAuthenticated()">
+    <div class="col-md-1 d-flex align-items-center justify-content-center">
+      <app-upvote (vote)="toggleVote(session)" [count]="session.voters.length" [voted]="userHasVoted(session)">
+      </app-upvote>
+    </div>
+  </div>
+  <div class="col-md-11">
     <app-collapsible-block>
       <div block-title>
         {{ session.name }}

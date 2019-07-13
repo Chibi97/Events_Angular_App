@@ -17,8 +17,17 @@ import {
   EventListResolver,
   CreateSessionComponent,
   SessionListComponent,
+  UpvoteComponent,
+  VoterService,
   DurationPipe,
+  LocationValidator,
 } from './events/index';
+
+import {
+  CollapsibleBlockComponent,
+  SimpleModalComponent,
+  ModalTriggerDirective
+} from './common/index';
 
 import { appRoutes } from './routes';
 import { AuthService } from './user/auth.service';
@@ -26,10 +35,6 @@ import { NavbarComponent } from './nav/navbar.component';
 import { Error404Component } from './errors/404.component';
 import { EventsAppComponent } from './events-app.component';
 import { NotificationService } from './services/notification.service';
-import { CollapsibleBlockComponent, SimpleModalComponent } from './common/index';
-import { ModalTriggerDirective } from './common/modal-trigger.directive';
-import { CommonModule } from '@angular/common';
-
 @NgModule({
   imports: [
   /* importing other modules (which makes all of its exported declarations
@@ -56,8 +61,10 @@ import { CommonModule } from '@angular/common';
     SessionListComponent,
     CollapsibleBlockComponent,
     SimpleModalComponent,
+    UpvoteComponent,
     DurationPipe,
-    ModalTriggerDirective
+    ModalTriggerDirective,
+    LocationValidator
   ],
   providers: [
     // services are declared here
@@ -73,7 +80,8 @@ import { CommonModule } from '@angular/common';
       */
     },
     EventListResolver,
-    AuthService
+    AuthService,
+    VoterService
     /**
      * It's actually important to specify types when we inject some service.
      * When we type constructor(private service: SomeService), angular will
