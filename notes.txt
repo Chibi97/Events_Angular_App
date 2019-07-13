@@ -112,3 +112,25 @@ We do that by editing index.html: <base href="/">
   2) Define routes for each page in /src/app/routes.ts
   3) Load routes in AppModule -> RouterModule.forRoot(appRoutes // which is representation of our routes.ts)
   4) See if <base> is there in index.html
+
+
+_______*_______ HTTP and RxJS _______*_______
+
+16) Promises vs Observables
+- Promise represent a single value in the future
+- Observables represent 0 or more values now OR in the future
+- Observables can be either sync or asynchronous
+- Obs are streams of observable data (values changed over time)
+- Obs can deal with time diffrently, have advanced operations like:
+  1) mathematical aggregation
+  2) buffering (we get several results together in batches)
+  3) debouncing (we can't get too many results if they happen to quickly)
+  4) distinct or filtering
+  5) combining observables into a single one
+  6) retry (if first try fails, try again)
+
+
+
+
+
+
