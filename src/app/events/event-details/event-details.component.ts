@@ -63,7 +63,8 @@ export class EventDetailsComponent implements OnInit {
             .map(s => s.id));
         session.id = nextId + 1;
         this.event.sessions.push(session);
-        this.eventService.updateEvent(this.event);
+        // this.eventService.updateEvent(this.event);
+        this.eventService.saveEvent(this.event).subscribe();
         this.addMode = false;
     }
 

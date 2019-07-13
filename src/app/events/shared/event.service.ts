@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Subject, Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { IEvent, ISession } from './event.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class EventService {
@@ -43,39 +43,48 @@ export class EventService {
   }
 
   saveEvent(event) {
-    event.id = 99;
-    event.session = [];
-    // tslint:disable-next-line: no-use-before-declare
-    EVENTS.push(event);
+    const options = { headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })};
+    return this.http.post<IEvent>('/api/events', event, options)
+      .pipe(catchError(this.handleError<IEvent>('saveEvent')));
+    // post method might return that new event of type IEvent, that's why we specified the type
+
+    // event.id = 99;
+    // event.session = [];
+    // EVENTS.push(event);
   }
 
   updateEvent(event) {
-    // tslint:disable-next-line: no-use-before-declare
-    const index = EVENTS.findIndex(x => x.id = event.id);
-    // tslint:disable-next-line: no-use-before-declare
-    EVENTS[index] = event;
+    // ACTUALLY! We don't need update method cuz our server is smart enough
+    // If it detects ID, it'll update the event, if not, it'll create a new one.
+
+    // const index = EVENTS.findIndex(x => x.id = event.id);
+    // EVENTS[index] = event;
   }
 
-  searchSessions(searchTerm: string) {
-    const term = searchTerm.toLocaleLowerCase();
-    let results: ISession[] = [];
+  searchSessions(searchTerm: string): Observable<ISession[]> {
+    return this.http.get<ISession[]>(`/api/sessions/search?search=${searchTerm}`)
+      .pipe(catchError(this.handleError<ISession[]>('searchSessions')));
 
-    // tslint:disable-next-line: no-use-before-declare
-    EVENTS.forEach(event => {
-      let matching = event.sessions.filter(session => session.name.toLocaleLowerCase().indexOf(term) > -1);
-      matching = matching.map((session: any) => {
-        session.eventId = event.id;
-        return session;
-      });
-      results = results.concat(matching); // assigning matching from the forEach to local variable.
-    });
+    // const term = searchTerm.toLocaleLowerCase();
+    // let results: ISession[] = [];
 
-    const subject = new Subject<ISession[]>();
-    setTimeout(() => {
-      subject.next(results);
-      subject.complete();
-    }, 1000);
-    return subject; // returning the observable!
+    // EVENTS.forEach(event => {
+    //   let matching = event.sessions.filter(session => session.name.toLocaleLowerCase().indexOf(term) > -1);
+    //   matching = matching.map((session: any) => {
+    //     session.eventId = event.id;
+    //     return session;
+    //   });
+    //   results = results.concat(matching); // assigning matching from the forEach to local variable.
+    // });
+
+    // const subject = new Subject<ISession[]>();
+    // setTimeout(() => {
+    //   subject.next(results);
+    //   subject.complete();
+    // }, 1000);
+    // return subject; // returning the observable!
     /**
      * We are filtering all sessions so that only those that cointain term stay in matching[].
      * Then we are mapping that array so we also have an ID of the event which that session belongs to,
@@ -84,7 +93,7 @@ export class EventService {
   }
 }
 
-const EVENTS: IEvent[] = [
+/* const EVENTS: IEvent[] = [
   {
     id: 1,
     name: 'Angular Connect',
@@ -389,4 +398,4 @@ const EVENTS: IEvent[] = [
       }
     ]
   }
-];
+]; */

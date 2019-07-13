@@ -55,7 +55,7 @@
     </div>
   </div>
   
-  <app-session-list [filterBy]="filterBy" [sortBy]="sortBy" *ngIf="!addMode" [sessions]="event?.sessions"></app-session-list>
+  <app-session-list [eventId]="event?.id" [filterBy]="filterBy" [sortBy]="sortBy" *ngIf="!addMode" [sessions]="event?.sessions"></app-session-list>
   <!-- binding event.sessions that came from event service to
       @Input() sessions[] of this component
   -->
