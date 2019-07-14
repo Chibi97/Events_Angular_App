@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { AuthService } from '../user/auth.service';
 import { ISession, EventService } from '../events';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-navbar',
@@ -16,7 +17,7 @@ export class NavbarComponent {
     foundSessions: ISession[];
     @Input() content: any;
 
-    constructor(public auth: AuthService, private eventService: EventService) {
+    constructor(public auth: AuthService, private eventService: EventService, private router: Router) {
 
     }
 
@@ -26,6 +27,12 @@ export class NavbarComponent {
         .subscribe(sessions => {
             this.foundSessions = sessions;
             console.log(this.foundSessions);
+        });
+    }
+
+    logout() {
+        this.auth.logout().subscribe(() => {
+            this.router.navigate(['/user/login']);
         });
     }
 

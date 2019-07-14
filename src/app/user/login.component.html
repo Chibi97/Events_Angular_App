@@ -1,6 +1,7 @@
 <h1 class="spacer mt-5">Login</h1>
 <hr>
 <div class="col-md-4">
+  <div *ngIf="loginInvalid" class="alert alert-danger">Invalid login info</div>
   <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)" autocomplete="off">
     <div class="form-group">
       <label for="userName">User Name:</label>
