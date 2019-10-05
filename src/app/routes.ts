@@ -13,7 +13,7 @@ export const appRoutes: Routes = [
     {
         path: 'events/new', component: CreateEventComponent,
         canDeactivate: ['canDeactivateCreateEvent']
-        // it's important that this route is first so angular dones't get confused
+        // it's important that this route is first so angular doesn't get confused
         // thinking :id = new
     },
     { path: 'events', component: EventsListComponent, resolve: {events: EventListResolver}},

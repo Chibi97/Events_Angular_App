@@ -13,7 +13,7 @@ export class EventRouteActivator {
         const eventExist = !!this.eventService.getEvent(+route.params.id);
         // cast this result into boolean
 
-        if (!eventExist) {
+        if (!eventExist)  {
             this.router.navigate(['/notfound']);
         }
         return eventExist; // true when if we found event
