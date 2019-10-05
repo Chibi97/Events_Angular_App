@@ -1,3 +1,3 @@
-## Events App from Pluralsight course
+## Events App whose purpse is to learn Angular and TypeScript
 
 [Pluralsight course by Jim Cooper and Joe Eames](https://app.pluralsight.com/library/courses/angular-fundamentals/table-of-contents)
